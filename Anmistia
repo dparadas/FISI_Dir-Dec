@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Amnistía 90 Años · FISI · Propuesta de Implementación</title>
+<style>
+/* ── BASE ── */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
+  background:linear-gradient(135deg,#8c1d40 0,#4a0e21 100%);
+  min-height:100vh;padding:20px;
+}
+.container{
+  max-width:1400px;margin:0 auto;background:#fff;
+  border-radius:20px;padding:30px;
+  box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+/* ── DRAFT BANNER ── */
+.draft-banner{
+  background:repeating-linear-gradient(45deg,#fff3cd,#fff3cd 12px,#fff9e6 12px,#fff9e6 24px);
+  border-top:3px solid #e6ac00;border-bottom:3px solid #e6ac00;
+  padding:9px 20px;text-align:center;
+  font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:#7a5900;border-radius:10px;margin-bottom:18px;
+}
+
+/* ── HEADER ── */
+.header{text-align:center;margin-bottom:24px}
+.header h1{color:#2c3e50;margin:.2rem 0;font-size:2rem}
+.header p{color:#7f8c8d;margin:0;font-size:.95rem}
+.header .sub{color:#95a5a6;font-size:.85rem;margin-top:4px}
+.acuerdo-badge{
+  display:inline-block;background:#fdf2f4;color:#8c1d40;
+  border:2px solid #8c1d40;border-radius:20px;
+  padding:5px 18px;font-weight:700;font-size:.85rem;margin-top:8px;
+}
+
+/* ── KPI CARDS ── */
+.credits-summary{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));
+  gap:14px;margin:20px 0;
+}
+.credit-card{
+  color:#fff;padding:18px 16px;border-radius:15px;
+  text-align:center;box-shadow:0 8px 16px rgba(0,0,0,.15);
+}
+.credit-card h4{font-size:.88rem;margin:0 0 6px;opacity:.9;line-height:1.3}
+.credit-card .number{font-size:2.2rem;font-weight:700;margin:6px 0;line-height:1}
+.credit-card .label{font-size:.77rem;opacity:.88;line-height:1.4}
+
+/* ── NAV ── */
+.section-nav{
+  display:flex;justify-content:center;gap:9px;
+  margin:20px 0 26px;flex-wrap:wrap;
+}
+.nav-button{
+  padding:9px 16px;border:none;border-radius:24px;
+  cursor:pointer;font-weight:700;transition:.25s;
+  font-size:.88rem;color:#fff;font-family:inherit;
+}
+.nav-button.active{outline:3px solid rgba(0,0,0,.1);transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.2)}
+.nav-present  {background:linear-gradient(135deg,#8c1d40,#c8171e)}
+.nav-alcance  {background:linear-gradient(135deg,#2980b9,#1a5276)}
+.nav-mecanismo{background:linear-gradient(135deg,#f39c12,#d68910)}
+.nav-pie      {background:linear-gradient(135deg,#9b59b6,#8e44ad)}
+.nav-costos   {background:linear-gradient(135deg,#16a085,#1abc9c)}
+.nav-proceso  {background:linear-gradient(135deg,#2ecc71,#27ae60)}
+.nav-calidad  {background:linear-gradient(135deg,#e74c3c,#c0392b)}
+.nav-crono    {background:linear-gradient(135deg,#34495e,#2c3e50)}
+.nav-aprobacion{background:linear-gradient(135deg,#5b0e1f,#8c1d40)}
+
+/* ── SECTIONS ── */
+.program-section{display:none;animation:fade .25s ease}
+.program-section.active{display:block}
+@keyframes fade{from{opacity:.6;transform:translateY(4px)}to{opacity:1;transform:none}}
+.section-title{text-align:center;font-size:1.45rem;color:#2c3e50;margin:0 0 16px}
+
+/* ── INFO / ALERT BOXES ── */
+.info-box{background:#e3f2fd;border-left:4px solid #2196f3;padding:15px 18px;border-radius:10px;margin:16px 0}
+.info-box h4{color:#1976d2;margin:0 0 8px;font-size:1rem}
+.info-box p{color:#333;margin:4px 0;line-height:1.65;font-size:.88rem}
+.warning-box{background:#fff3e0;border-left:4px solid #ff9800}
+.warning-box h4{color:#f57c00}
+.success-box{background:#e8f5e9;border-left:4px solid #4caf50}
+.success-box h4{color:#2e7d32}
+.note-box{background:#f3e5f5;border-left:4px solid #9c27b0}
+.note-box h4{color:#6a1b9a}
+.danger-box{background:#fce4ec;border-left:4px solid #e91e63}
+.danger-box h4{color:#880e4f}
+
+/* ── LEGAL BOX ── */
+.legal-box{
+  background:#2c3e50;border-radius:12px;
+  padding:20px 24px;margin:20px 0;color:#ecf0f1;
+}
+.legal-box h3{color:#f39c12;margin:0 0 10px;font-size:1rem}
+.legal-box p{font-size:.86rem;line-height:1.72;margin-bottom:5px}
+.legal-box strong{color:#f39c12}
+.law-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.law-tag{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:3px 11px;border-radius:6px;font-size:.76rem;color:rgba(255,255,255,.75)}
+
+/* ── SINTESIS BOX ── */
+.sintesis-box{border-radius:12px;padding:20px 24px;margin:18px 0;color:#ecf0f1}
+.sint-dark{background:linear-gradient(135deg,#2c3e50,#34495e)}
+.sint-burg{background:linear-gradient(135deg,#5b0e1f,#8c1d40)}
+.sintesis-box h3{color:#f39c12;margin:0 0 10px;font-size:.95rem}
+.sintesis-box p{font-size:.86rem;line-height:1.75;margin:0 0 6px}
+.sintesis-box ul{font-size:.86rem;line-height:1.8;padding-left:18px;margin:0}
+
+/* ── CYCLE BANNERS ── */
+.cycle-banner{
+  border-radius:10px;padding:14px 18px;
+  margin:10px 0;border-left:5px solid;
+  display:flex;align-items:flex-start;gap:12px;
+}
+.cb-a  {background:#fdf2f4;border-color:#8c1d40;color:#5b0e1f}
+.cb-b  {background:#fef9ef;border-color:#f39c12;color:#7a5900}
+.cb-c  {background:#e8f8f0;border-color:#27ae60;color:#145a32}
+.cb-d  {background:#e8f4fd;border-color:#2980b9;color:#1a5276}
+.cb-info{background:#e3f2fd;border-color:#2196f3;color:#0d3c6e}
+.cb-pie{background:#f5eeff;border-color:#9b59b6;color:#4a0d6f}
+.cycle-banner .icon{font-size:1.5rem;flex-shrink:0;margin-top:1px}
+.cycle-banner h4{font-size:.96rem;font-weight:700;margin:0 0 4px}
+.cycle-banner p{font-size:.84rem;margin:0;line-height:1.6}
+.cycle-banner ul{font-size:.84rem;margin:6px 0 0;padding-left:16px;line-height:1.7}
+.cycle-banner .note{font-size:.77rem;margin-top:5px;opacity:.85;font-style:italic}
+
+/* ── CUTLINE ── */
+.cutline{
+  text-align:center;padding:12px 18px;border-radius:10px;
+  border:2px dashed;margin:10px 0 20px;
+}
+.cl-burg {border-color:#8c1d40;color:#5b0e1f;background:#fdf2f4}
+.cl-green{border-color:#27ae60;color:#145a32;background:#e8f8f0}
+.cl-gold {border-color:#f39c12;color:#7a5900;background:#fef9ef}
+.cl-blue {border-color:#2980b9;color:#1a5276;background:#e8f4fd}
+.cl-purple{border-color:#9b59b6;color:#4a0d6f;background:#f5eeff}
+.cutline h4{font-size:.92rem;font-weight:700;margin-bottom:4px}
+.cutline p{font-size:.82rem;margin:0;opacity:.85}
+
+/* ── SEMESTER CARDS ── */
+.semesters-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
+.semesters-grid.two-col{grid-template-columns:repeat(2,1fr)}
+.semesters-grid.single{grid-template-columns:1fr}
+@media(max-width:1150px){.semesters-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){.semesters-grid{grid-template-columns:1fr}.semesters-grid.two-col{grid-template-columns:1fr}}
+
+.semester-detail-card{
+  background:#fff;border-radius:14px;padding:16px 18px;
+  box-shadow:0 6px 20px rgba(0,0,0,.08);border-top:4px solid;
+  display:flex;flex-direction:column;
+}
+.c-burg  {border-top-color:#8c1d40}
+.c-gold  {border-top-color:#f39c12}
+.c-green {border-top-color:#27ae60}
+.c-blue  {border-top-color:#2980b9}
+.c-purple{border-top-color:#9b59b6}
+.c-teal  {border-top-color:#16a085}
+.c-slate {border-top-color:#34495e}
+.c-red   {border-top-color:#e74c3c}
+
+.semester-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:8px}
+.semester-title{font-size:.98rem;color:#2c3e50;margin:0;font-weight:700;line-height:1.3}
+.credit-badge{
+  background:#34495e;color:#fff;padding:3px 10px;
+  border-radius:12px;font-size:.73rem;font-weight:700;flex-shrink:0;white-space:nowrap;
+}
+.cb-red   {background:#e74c3c}
+.cb-green {background:#27ae60}
+.cb-gold  {background:#f39c12}
+.cb-blue  {background:#2980b9}
+.cb-purple{background:#9b59b6}
+.cb-teal  {background:#16a085}
+
+/* ── SUBJECT LIST ── */
+.subjects-list{list-style:none;padding:0;margin:0;flex:1}
+.subject-item{
+  background:#f8f9fa;margin:7px 0;padding:10px 12px;
+  border-radius:10px;border-left:3px solid #bdc3c7;
+}
+.subject-name{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:8px;
+  color:#2c3e50;font-weight:700;font-size:.84rem;line-height:1.3;
+}
+.subject-credits{
+  background:#e74c3c;color:#fff;padding:2px 7px;
+  border-radius:10px;font-size:.70rem;white-space:nowrap;flex-shrink:0;
+}
+.subject-description{color:#6b7b86;font-size:.79rem;margin-top:4px;line-height:1.5}
+/* variants */
+.si-burg  {background:linear-gradient(135deg,#fdf2f4,#fff);border-left-color:#8c1d40}
+.si-gold  {background:linear-gradient(135deg,#fef9ef,#fff);border-left-color:#f39c12}
+.si-green {background:linear-gradient(135deg,#e8f8f0,#fff);border-left-color:#27ae60}
+.si-blue  {background:linear-gradient(135deg,#e8f4fd,#fff);border-left-color:#2980b9}
+.si-purple{background:linear-gradient(135deg,#f5eeff,#fff);border-left-color:#9b59b6}
+.si-teal  {background:linear-gradient(135deg,#e0f7f4,#fff);border-left-color:#16a085}
+.si-slate {background:linear-gradient(135deg,#f2f3f4,#fff);border-left-color:#34495e}
+.si-danger{background:linear-gradient(135deg,#fce4ec,#fff);border-left-color:#e74c3c}
+
+/* ── COMP GRID ── */
+.comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
+@media(max-width:900px){.comp-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.comp-grid{grid-template-columns:1fr}}
+.comp-card{border-radius:12px;padding:16px 18px;border-top:4px solid}
+.cc-burg  {border-top-color:#8c1d40;background:#fdf2f4}
+.cc-gold  {border-top-color:#f39c12;background:#fef9ef}
+.cc-green {border-top-color:#27ae60;background:#e9f7ef}
+.cc-blue  {border-top-color:#2980b9;background:#eaf2fb}
+.cc-purple{border-top-color:#9b59b6;background:#f5eeff}
+.cc-teal  {border-top-color:#16a085;background:#e0f7f4}
+.cc-red   {border-top-color:#e74c3c;background:#fce4ec}
+.cc-slate {border-top-color:#34495e;background:#f2f3f4}
+.comp-card h4{font-size:.92rem;font-weight:700;color:#2c3e50;margin:0 0 3px}
+.comp-card .cc-sub{font-size:.74rem;color:#7f8c8d;margin-bottom:8px;display:block;font-style:italic}
+.comp-card ul{padding-left:16px;margin:0;font-size:.82rem;color:#2c3e50;line-height:1.8}
+.comp-card p{font-size:.84rem;color:#2c3e50;margin:0;line-height:1.65}
+
+/* ── PIE SPEC TABLE ── */
+.pie-table{width:100%;border-collapse:collapse;font-size:.84rem;border-radius:12px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.09);margin:16px 0}
+.pie-table th{background:#9b59b6;color:#fff;padding:10px 16px;text-align:left;font-weight:700;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;width:30%}
+.pie-table td{padding:10px 16px;border-bottom:1px solid #ecf0f1;vertical-align:top;color:#2c3e50;line-height:1.6}
+.pie-table tr:last-child td{border-bottom:none}
+.pie-table tr:nth-child(even) td{background:#f9f9f9}
+
+/* ── MODALIDADES TABLE ── */
+.mod-table{width:100%;border-collapse:collapse;font-size:.83rem;border-radius:12px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.09);margin:16px 0}
+.mod-table thead tr{background:#f39c12;color:#fff}
+.mod-table th{padding:10px 14px;text-align:left;font-weight:700;font-size:.78rem;letter-spacing:.03em}
+.mod-table td{padding:10px 14px;border-bottom:1px solid #ecf0f1;vertical-align:top;color:#2c3e50;line-height:1.55}
+.mod-table tr:last-child td{border-bottom:none}
+.mod-table tr:nth-child(even) td{background:#fef9ef}
+.mod-table td:first-child{font-weight:700;color:#8c1d40}
+
+/* ── CRONOGRAMA TABLE ── */
+.crono-table{width:100%;border-collapse:collapse;font-size:.83rem;border-radius:12px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.09);margin:16px 0}
+.crono-table thead tr{background:#34495e;color:#fff}
+.crono-table th{padding:10px 16px;text-align:left;font-weight:700;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase}
+.crono-table td{padding:9px 16px;border-bottom:1px solid #ecf0f1;vertical-align:top;color:#2c3e50;line-height:1.55;font-size:.83rem}
+.crono-table tr:nth-child(even) td{background:#f9f9f9}
+.crono-table tr:last-child td{border-bottom:none}
+.crono-urg td{background:#fdf2f4!important}
+.crono-urg td:last-child{color:#c0392b;font-weight:700}
+.crono-ok td:last-child{color:#27ae60;font-weight:600}
+
+/* ── CICLO TIMELINE ── */
+.ciclo-timeline{
+  display:flex;border-radius:14px;overflow:hidden;
+  box-shadow:0 8px 24px rgba(0,0,0,.1);margin:20px 0;
+}
+.cphase{flex:1;padding:18px 12px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px}
+.cphase-arr{background:#e8eaed;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:#aaa;flex:0 0 24px}
+.cphase-num{font-size:1.8rem;font-weight:700;line-height:1}
+.cphase h4{font-size:.78rem;font-weight:700;line-height:1.3;margin:0}
+.cphase-sub{font-size:.68rem;opacity:.82;line-height:1.45}
+.ph-burg  {background:linear-gradient(160deg,#5b0e1f,#8c1d40);color:#fff}
+.ph-gold  {background:linear-gradient(160deg,#7a5900,#f39c12);color:#fff}
+.ph-blue  {background:linear-gradient(160deg,#1a5276,#2980b9);color:#fff}
+.ph-green {background:linear-gradient(160deg,#0e5c2f,#27ae60);color:#fff}
+.ph-purple{background:linear-gradient(160deg,#4a0d6f,#9b59b6);color:#fff}
+.ph-teal  {background:linear-gradient(160deg,#0e6655,#16a085);color:#fff}
+.ph-slate {background:linear-gradient(160deg,#2c3e50,#34495e);color:#fff}
+@media(max-width:700px){.ciclo-timeline{flex-direction:column}.cphase-arr{display:none}}
+
+/* ── DOMINIO CARDS ── */
+.dominio-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:14px 0}
+@media(max-width:780px){.dominio-grid{grid-template-columns:1fr}}
+.dominio-card{border-radius:12px;padding:16px 18px;border-left:5px solid;background:#fff;box-shadow:0 3px 10px rgba(0,0,0,.07)}
+.dominio-card h4{font-size:.9rem;font-weight:700;margin:0 0 6px;color:#2c3e50}
+.dominio-card p{font-size:.82rem;color:#5d6d7e;margin:0;line-height:1.6}
+.dominio-card ul{font-size:.82rem;color:#5d6d7e;margin:7px 0 0;padding-left:17px;line-height:1.7}
+.dc-burg  {border-left-color:#8c1d40;background:#fdf2f4}
+.dc-gold  {border-left-color:#f39c12;background:#fef9ef}
+.dc-green {border-left-color:#27ae60;background:#e8f8f0}
+.dc-blue  {border-left-color:#2980b9;background:#eaf4fb}
+.dc-purple{border-left-color:#9b59b6;background:#f5eeff}
+.dc-teal  {border-left-color:#16a085;background:#e0f7f4}
+
+/* ── CONTEXT GRID ── */
+.context-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:14px 0}
+@media(max-width:1000px){.context-grid{grid-template-columns:repeat(2,1fr)}}
+.context-card{border-radius:10px;padding:13px 14px;text-align:center;border-top:3px solid}
+.context-card h5{font-size:.8rem;font-weight:700;margin:0 0 5px;color:#2c3e50}
+.context-card p{font-size:.75rem;color:#5d6d7e;margin:0;line-height:1.5}
+.ctx-burg  {border-top-color:#8c1d40;background:#fdf2f4}
+.ctx-gold  {border-top-color:#f39c12;background:#fef9ef}
+.ctx-green {border-top-color:#27ae60;background:#e8f8f0}
+.ctx-blue  {border-top-color:#2980b9;background:#e8f4fd}
+
+/* ── CERT TAGS ── */
+.cert-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.cert-tag{
+  background:#eef3ff;color:#1b3ea1;border:1px solid #cdd9ff;
+  border-radius:8px;padding:3px 10px;font-size:.74rem;font-weight:700;
+}
+.ct-aws  {background:#fff3e0;color:#e65100;border-color:#ffcc80}
+.ct-azure{background:#e3f2fd;color:#0d47a1;border-color:#90caf9}
+.ct-gcp  {background:#e8f5e9;color:#1b5e20;border-color:#a5d6a7}
+.ct-sec  {background:#fce4ec;color:#880e4f;border-color:#f48fb1}
+.ct-net  {background:#e0f7fa;color:#006064;border-color:#80deea}
+.ct-mgmt {background:#f3e5f5;color:#4a148c;border-color:#ce93d8}
+
+/* ── BADGE ── */
+.badge{display:inline-block;background:#eef3ff;color:#1b3ea1;border:1px solid #cdd9ff;border-radius:8px;padding:2px 8px;font-size:.76rem;font-weight:700;margin-right:4px}
+.badge-green {background:#e8f5e9;color:#2e7d32;border-color:#81c784}
+.badge-red   {background:#ffebee;color:#c62828;border-color:#ef5350}
+.badge-gold  {background:#fff8e1;color:#e65100;border-color:#ffb74d}
+.badge-purple{background:#f3e5f5;color:#6a1b9a;border-color:#ce93d8}
+.note-text{font-size:.83rem;color:#7f8c8d;text-align:center;margin-top:6px}
+
+/* ── FIRMA ── */
+.firma-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:28px 0}
+@media(max-width:680px){.firma-grid{grid-template-columns:1fr}}
+.firma-block{border-top:3px solid #8c1d40;background:#fdf2f4;border-radius:12px;padding:20px 16px;text-align:center}
+.firma-line{width:65%;height:1px;background:#bdc3c7;margin:32px auto 10px}
+.firma-name{font-weight:700;font-size:.92rem;color:#2c3e50}
+.firma-role{font-size:.76rem;color:#7f8c8d;margin-top:4px;line-height:1.5}
+.firma-date{font-size:.75rem;color:#95a5a6;margin-top:8px;font-style:italic}
+.firma-acta{background:#fff3e0;border:1px solid #ffe0b2;border-radius:7px;padding:7px 13px;margin-top:10px;font-size:.76rem;color:#7a5900}
+
+@media(max-width:768px){
+  .credits-summary{grid-template-columns:1fr 1fr}
+  .header h1{font-size:1.65rem}
+  .section-nav{gap:5px}
+  .nav-button{padding:8px 11px;font-size:.8rem}
+  .comp-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ── BANNER ── -->
+<div class="draft-banner">⚠ BORRADOR — Para aprobación en Comité de Currículo → Consejo de Escuela → Dirección de Currículo · Versión Abril 2026 ⚠</div>
+
+<!-- ── HEADER ── -->
+<div class="header">
+  <h1>Amnistía 90 Años · FISI</h1>
+  <p>Propuesta de Implementación · Facultad de Ingeniería de Sistemas e Informática · UPB Seccional Bucaramanga</p>
+  <p class="sub">Acuerdo CDG N° 01 de 2026 · Elaborada por el Comité de Currículo FISI · Requiere aval Consejo de Escuela</p>
+  <div class="acuerdo-badge">📋 Acuerdo CDG N° 01 / 2026 · 27 de febrero de 2026</div>
+</div>
+
+<!-- ── KPI CARDS ── -->
+<div class="credits-summary">
+  <div class="credit-card" style="background:linear-gradient(135deg,#8c1d40,#c8171e)">
+    <h4>Ventana de Solicitudes</h4>
+    <div class="number">2026</div>
+    <div class="label">May–Nov · Sin prórroga</div>
+  </div>
+  <div class="credit-card" style="background:linear-gradient(135deg,#2980b9,#1a5276)">
+    <h4>Créditos mínimos aceptados</h4>
+    <div class="number">60%</div>
+    <div class="label">Del plan cursado + excepción Comité</div>
+  </div>
+  <div class="credit-card" style="background:linear-gradient(135deg,#f39c12,#d68910)">
+    <h4>Ventana temporal de retiro</h4>
+    <div class="number">2–15</div>
+    <div class="label">Años · Retiros 2011–2024</div>
+  </div>
+  <div class="credit-card" style="background:linear-gradient(135deg,#27ae60,#1e8449)">
+    <h4>Plazo de titulación</h4>
+    <div class="number">2</div>
+    <div class="label">Años máx. desde la matrícula</div>
+  </div>
+  <div class="credit-card" style="background:linear-gradient(135deg,#9b59b6,#8e44ad)">
+    <h4>Curso especial PIE</h4>
+    <div class="number">5 cr</div>
+    <div class="label">Proyecto Integrador Especial Amnistía</div>
+  </div>
+  <div class="credit-card" style="background:linear-gradient(135deg,#34495e,#2c3e50)">
+    <h4>Escenarios de culminación</h4>
+    <div class="number">3</div>
+    <div class="label">A · B · C según deuda académica</div>
+  </div>
+</div>
+
+<!-- ── NAV ── -->
+<div class="section-nav">
+  <button class="nav-button nav-present   active" data-section="presentacion">📄 Presentación</button>
+  <button class="nav-button nav-alcance"          data-section="alcance"     >👥 Alcance y Población</button>
+  <button class="nav-button nav-mecanismo"        data-section="mecanismo"   >🔧 Mecanismos (A · B · C)</button>
+  <button class="nav-button nav-pie"              data-section="pie"         >🎓 PIE · Curso Especial</button>
+  <button class="nav-button nav-costos"           data-section="costos"      >💰 Costos</button>
+  <button class="nav-button nav-proceso"          data-section="proceso"     >🔄 Proceso de Admisión</button>
+  <button class="nav-button nav-calidad"          data-section="calidad"     >✅ Aseguramiento</button>
+  <button class="nav-button nav-crono"            data-section="cronograma"  >📅 Cronograma Interno</button>
+  <button class="nav-button nav-aprobacion"       data-section="aprobacion"  >✍️ Aprobación</button>
+</div>
+
+
+<!-- ═══════════════════ 1. PRESENTACIÓN ═══════════════════ -->
+<section class="program-section active" id="presentacion">
+  <h2 class="section-title">Presentación</h2>
+
+  <div class="legal-box">
+    <h3>📜 Marco Normativo y Propósito</h3>
+    <p>En el marco del <strong>Acuerdo CDG N° 01 del 27 de febrero de 2026</strong>, por medio del cual se aprueba la Amnistía 90 Años, la Facultad de Ingeniería de Sistemas e Informática (FISI) presenta las condiciones específicas bajo las cuales los estudiantes retirados y egresados no graduados del programa podrán acogerse a esta iniciativa para obtener su título profesional durante el año 2026.</p>
+    <p>Esta propuesta ha sido construida en coherencia con el <strong>plan de estudios vigente 2025–2030 (133 créditos)</strong>, con el marco institucional de trabajos de grado de la UPB, y con los principios de calidad académica que distinguen a la FISI. El documento será presentado al <strong>Consejo de Escuela</strong> para su aprobación formal, en cumplimiento del Artículo 4 del Acuerdo CDG N° 01/2026.</p>
+    <div class="law-tags">
+      <span class="law-tag">Acuerdo CDG N° 01/2026 · Art. 4</span>
+      <span class="law-tag">Plan de Estudios FISI 2025–2030</span>
+      <span class="law-tag">Marco institucional TDG UPB</span>
+      <span class="law-tag">Registro Calificado MEN vigente</span>
+      <span class="law-tag">SNIES 102907</span>
+    </div>
+  </div>
+
+  <div class="comp-grid">
+    <div class="comp-card cc-burg">
+      <h4>🎯 Coherencia con el Plan Vigente</h4>
+      <span class="cc-sub">2025–2030 · 133 créditos</span>
+      <p>La propuesta está anclada al nuevo plan de estudios FISI. Todos los escenarios de culminación están definidos en relación con la estructura Major (S1–S6), Minor (S7) y Capstone + Práctica (S8), garantizando que cada beneficiario alcance el perfil de egreso del Ingeniero.</p>
+    </div>
+    <div class="comp-card cc-blue">
+      <h4>⚙️ Practicidad de Aplicación</h4>
+      <span class="cc-sub">Escenarios concretos por perfil</span>
+      <p>La propuesta clasifica a los aspirantes en <strong>tres escenarios</strong> claros (A, B, C) según su deuda académica real, definiendo para cada uno mecanismos específicos, responsables y condiciones de calidad verificables.</p>
+    </div>
+    <div class="comp-card cc-green">
+      <h4>📈 Impacto en Indicadores</h4>
+      <span class="cc-sub">Acreditación y Registro Calificado</span>
+      <p>La implementación efectiva de esta propuesta contribuye directamente a la tasa de graduación del programa, indicador clave en los procesos de renovación de Registro Calificado ante el MEN y en la candidatura ABET EAC.</p>
+    </div>
+  </div>
+
+  <div class="cutline cl-burg">
+    <h4>🏛 Cadena de Aprobación Requerida</h4>
+    <p>Comité de Currículo FISI (14 abr) → Consejo de Escuela (15–16 abr) → Envío a <strong>direccioncurriculo.bga@upb.edu.co</strong> (17 abr) → Aval Vicerrectoría Académica</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ 2. ALCANCE Y POBLACIÓN ═══════════════════ -->
+<section class="program-section" id="alcance">
+  <h2 class="section-title">Alcance y Población Beneficiaria</h2>
+
+  <div class="info-box">
+    <h4>📌 Condiciones de Acceso — Definidas por FISI</h4>
+    <p>Podrán acceder a la Amnistía 90 Años en FISI los aspirantes que cumplan <strong>simultáneamente</strong> las siguientes cuatro condiciones. Nótese que el umbral de créditos (60%) es <em>más inclusivo</em> que el mínimo del Acuerdo CDG (80%/70%), aplicando la autonomía que el Artículo Cuarto otorga a los programas.</p>
+  </div>
+
+  <div class="cycle-banner cb-d">
+    <div class="icon">🎓</div>
+    <div>
+      <h4>Condición 1 — Matrícula previa en FISI UPB Bucaramanga</h4>
+      <p>Haber estado matriculado en algún plan de estudios del programa de Ingeniería de Sistemas e Informática de la UPB Bucaramanga. No aplica para transferencias de otras sedes que no hayan cursado créditos en Bucaramanga.</p>
+    </div>
+  </div>
+
+  <div class="cycle-banner cb-a">
+    <div class="icon">📅</div>
+    <div>
+      <h4>Condición 2 — Ventana Temporal de Retiro: entre 2 y 15 años</h4>
+      <p>Haber interrumpido los estudios con una antelación mínima de <strong>2 años</strong> y máxima de <strong>15 años</strong> contados desde la fecha de presentación de la solicitud. Esto equivale a retiros ocurridos entre <strong>2011 y 2024</strong>.</p>
+      <p class="note">Fundamento: garantizar que el aspirante tenga vinculación real con la disciplina (por experiencia laboral o proximidad al plan vigente) y que la brecha de actualización tecnológica sea superable en los 2 años del beneficio.</p>
+    </div>
+  </div>
+
+  <div class="cycle-banner cb-b">
+    <div class="icon">📊</div>
+    <div>
+      <h4>Condición 3 — Mínimo 60% de Créditos Aprobados</h4>
+      <p>Haber aprobado al menos el <strong>60% de los créditos</strong> del plan de estudios en el que estuvo matriculado. El Comité de Currículo podrá estudiar excepciones motivadas cuando el porcentaje sea inferior, siempre que el caso sea técnicamente viable y académicamente justificado.</p>
+    </div>
+  </div>
+
+  <div class="cycle-banner cb-c">
+    <div class="icon">📝</div>
+    <div>
+      <h4>Condición 4 — Pruebas de Estado (Saber Pro)</h4>
+      <p>Haber presentado las Pruebas de Estado (Saber Pro) durante el período de formación activa. Quienes <strong>no</strong> las hayan presentado quedan sujetos a los ajustes razonables definidos por la Dirección de Currículo, conforme al Acuerdo CDG N° 01/2026.</p>
+    </div>
+  </div>
+
+  <div class="context-grid">
+    <div class="context-card ctx-burg">
+      <h5>Umbral FISI: 60%</h5>
+      <p>Más inclusivo que el Acuerdo (80%/70%). Autonomía del programa según Art. 4.</p>
+    </div>
+    <div class="context-card ctx-gold">
+      <h5>Retiros 2011–2024</h5>
+      <p>Ventana de 2–15 años garantiza viabilidad de actualización tecnológica.</p>
+    </div>
+    <div class="context-card ctx-blue">
+      <h5>Excepción por Comité</h5>
+      <p>Casos con &lt; 60% pueden ser estudiados si son técnicamente justificables.</p>
+    </div>
+    <div class="context-card ctx-green">
+      <h5>Saber Pro flexible</h5>
+      <p>Quienes no presentaron quedan sujetos a ajustes de Dirección de Currículo.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ 3. MECANISMOS A·B·C ═══════════════════ -->
+<section class="program-section" id="mecanismo">
+  <h2 class="section-title">Mecanismos para Culminar la Formación · Artículo 4</h2>
+
+  <div class="info-box">
+    <h4>⚙️ Estructura del Plan Vigente 2025–2030 como referencia</h4>
+    <p>El plan de estudios FISI 2025–2030 tiene 133 créditos: <strong>Major S1–S6 (111 cr) · Minor S7 (15 cr) · Capstone + Práctica S8 (7 cr)</strong>. Los aspirantes son ubicados en uno de los tres escenarios según el análisis de créditos pendientes realizado por el Director del Programa.</p>
+  </div>
+
+  <!-- ESCENARIO A -->
+  <div class="cycle-banner cb-a">
+    <div class="icon">📚</div>
+    <div>
+      <h4>Escenario A — Créditos Disciplinares Pendientes · Mayor deuda académica</h4>
+      <p>Aplica para aspirantes con cursos pendientes en el plan de estudios. Se aplican cuatro mecanismos en cadena, de mayor a menor preferencia, según lo que el caso permita.</p>
+    </div>
+  </div>
+
+  <div class="semesters-grid" style="margin-bottom:10px">
+    <article class="semester-detail-card c-burg">
+      <div class="semester-header">
+        <h3 class="semester-title">a) Reconocimiento de Competencias y Experiencia Laboral</h3>
+        <span class="credit-badge cb-red">Preferente</span>
+      </div>
+      <ul class="subjects-list">
+        <li class="subject-item si-burg">
+          <div class="subject-name">Certificaciones laborales</div>
+          <div class="subject-description">Acreditación de experiencia técnica relevante con mínimo <strong>2 años en el sector TI</strong>. Verificada mediante certificados laborales formales.</div>
+        </li>
+        <li class="subject-item si-burg">
+          <div class="subject-name">Portafolio técnico o demostración ante jurado</div>
+          <div class="subject-description">Evaluación de competencias ante un jurado designado por el Comité de Currículo. El aspirante presenta evidencias de trabajo real.</div>
+        </li>
+        <li class="subject-item si-burg">
+          <div class="subject-name">Certificaciones de industria vigentes</div>
+          <div class="subject-description">Equivalen total o parcialmente a cursos del plan. La tabla de equivalencias es definida por el Comité de Currículo.</div>
+        </li>
+      </ul>
+      <div class="cert-tags" style="margin-top:10px">
+        <span class="cert-tag ct-aws">AWS</span>
+        <span class="cert-tag ct-azure">Azure</span>
+        <span class="cert-tag ct-gcp">Google Cloud</span>
+        <span class="cert-tag ct-net">Cisco</span>
+        <span class="cert-tag ct-sec">CompTIA</span>
+        <span class="cert-tag ct-sec">CISM · CISSP</span>
+        <span class="cert-tag ct-sec">ISO 27001</span>
+        <span class="cert-tag ct-mgmt">ITIL V4</span>
+        <span class="cert-tag ct-mgmt">CoBIT</span>
+      </div>
+    </article>
+
+    <article class="semester-detail-card c-blue">
+      <div class="semester-header">
+        <h3 class="semester-title">b) Homologación de Cursos Externos</h3>
+        <span class="credit-badge cb-blue">Alternativa</span>
+      </div>
+      <ul class="subjects-list">
+        <li class="subject-item si-blue">
+          <div class="subject-name">Cursos de otras IES</div>
+          <div class="subject-description">Cursos aprobados en otras instituciones de educación superior son susceptibles de homologación según los criterios académicos vigentes de FISI.</div>
+        </li>
+        <li class="subject-item si-blue">
+          <div class="subject-name">Criterios de equivalencia</div>
+          <div class="subject-description">Se evaluará contenido, intensidad horaria y nivel de complejidad comparable al curso del plan FISI. El Director del Programa emite concepto técnico.</div>
+        </li>
+        <li class="subject-item si-slate">
+          <div class="subject-name">Costo a cargo del aspirante</div>
+          <div class="subject-description">El aspirante asume los derechos de homologación según el tarifario de Registro Universitario vigente.</div>
+        </li>
+      </ul>
+    </article>
+
+    <article class="semester-detail-card c-teal">
+      <div class="semester-header">
+        <h3 class="semester-title">c) Reconocimiento de Cursos Internos UPB</h3>
+        <span class="credit-badge cb-teal">Directa</span>
+      </div>
+      <ul class="subjects-list">
+        <li class="subject-item si-teal">
+          <div class="subject-name">Cursos aprobados en UPB</div>
+          <div class="subject-description">Los cursos aprobados previamente en la UPB Bucaramanga son reconocidos directamente, sin costo adicional de homologación.</div>
+        </li>
+        <li class="subject-item si-teal">
+          <div class="subject-name">Verificación de equivalencias</div>
+          <div class="subject-description">El Director del Programa verifica la equivalencia entre el plan cursado por el estudiante y el plan 2025–2030 vigente, mediante análisis comparativo de contenidos.</div>
+        </li>
+      </ul>
+    </article>
+  </div>
+
+  <article class="semester-detail-card c-slate" style="margin-bottom:20px">
+    <div class="semester-header">
+      <h3 class="semester-title">d) Cursos por Cursar — Última opción</h3>
+      <span class="credit-badge">Necesaria</span>
+    </div>
+    <p style="font-size:.84rem;color:#5d6d7e;margin:0 0 10px;line-height:1.6">Los créditos que no puedan ser homologados, reconocidos ni sustituidos por experiencia deberán ser cursados y aprobados dentro del plazo de <strong>2 años</strong> establecido por el Acuerdo CDG N° 01/2026. El programa habilitará las secciones necesarias para garantizar la oferta de estos cursos, incluyendo grupos especiales si la demanda lo justifica.</p>
+    <ul class="subjects-list">
+      <li class="subject-item si-slate">
+        <div class="subject-name">Habilitación de grupos especiales</div>
+        <div class="subject-description">Si el curso ya no está en la oferta regular, el programa tramita su habilitación con la Dirección de Currículo, priorizando los cursos más demandados entre los beneficiarios.</div>
+      </li>
+      <li class="subject-item si-slate">
+        <div class="subject-name">Integración con grupos regulares</div>
+        <div class="subject-description">En lo posible, los beneficiarios se integrarán a los grupos regulares del plan vigente para enriquecer su experiencia de aprendizaje y facilitar la red de pares.</div>
+      </li>
+    </ul>
+  </article>
+
+  <!-- ESCENARIO B -->
+  <div class="cycle-banner cb-b">
+    <div class="icon">📝</div>
+    <div>
+      <h4>Escenario B — Solo Trabajo de Grado Pendiente</h4>
+      <p>Aplica para aspirantes que hayan completado todos los créditos académicos pero tengan pendiente únicamente el Trabajo de Grado. La FISI ofrece <strong>cinco modalidades</strong>, en coherencia con el reglamento institucional de trabajos de grado. El aspirante acuerda la modalidad con el Director del Programa al momento de la formalización.</p>
+    </div>
+  </div>
+
+  <table class="mod-table">
+    <thead>
+      <tr>
+        <th>Modalidad</th>
+        <th>Descripción</th>
+        <th>Condición para aplicar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Portafolio Profesional</td>
+        <td>Recopilación curada de proyectos y experiencias TI del aspirante, evaluada con rúbrica por el Comité de Currículo.</td>
+        <td>Experiencia laboral ≥ 2 años en el sector TI.</td>
+      </tr>
+      <tr>
+        <td>Prototipo / Producto de Software</td>
+        <td>Desarrollo de una solución tecnológica funcional que resuelva un problema real, con documentación técnica y sustentación.</td>
+        <td>Acompañamiento de un director designado por la FISI.</td>
+      </tr>
+      <tr>
+        <td>Informe Técnico de Proyecto Profesional</td>
+        <td>Sistematización y análisis de un proyecto ejecutado en entorno laboral real, con rigor académico y referenciación.</td>
+        <td>Debe ajustarse a los criterios del reglamento de trabajos de grado UPB.</td>
+      </tr>
+      <tr>
+        <td>Artículo de Reflexión o Revisión</td>
+        <td>Documento académico sobre tema de Ingeniería de Sistemas e Informática, aceptado o en proceso de publicación en revista indexada o de divulgación.</td>
+        <td>Puede ser coautoría con docente de la FISI.</td>
+      </tr>
+      <tr>
+        <td>Proyecto Integrador Especial (PIE)</td>
+        <td>Curso proyecto de actualización tecnológica diseñado específicamente para los beneficiarios de la amnistía. Ver Sección PIE para detalles completos.</td>
+        <td>Requiere creación en catálogo académico. ≥ 90% créditos completados o reconocidos.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ESCENARIO C -->
+  <div class="cycle-banner cb-c">
+    <div class="icon">🌐</div>
+    <div>
+      <h4>Escenario C — Solo Requisito de Lengua Extranjera Pendiente</h4>
+      <p>Para aspirantes que únicamente tengan pendiente el requisito de lengua extranjera, el trámite se gestiona <strong>directamente con el Centro de Lenguas de la UPB</strong>, sin necesidad de intervención adicional del programa. Las condiciones específicas serán comunicadas por el Centro de Lenguas según lo establece el <strong>Artículo 5</strong> del Acuerdo CDG N° 01/2026. Una vez acreditado el idioma, el programa tramita el proceso de grado con Registro Universitario.</p>
+    </div>
+  </div>
+
+  <div class="sintesis-box sint-dark" style="margin-top:20px">
+    <h3>🧭 Ruta de Clasificación por el Director del Programa</h3>
+    <p>Al recibir cada solicitud, el Director determina el escenario aplicable mediante análisis del historial académico:</p>
+    <ul>
+      <li><strong>Escenario A</strong> → Si el aspirante tiene cursos pendientes (independientemente de si también tiene TDG o idioma pendiente).</li>
+      <li><strong>Escenario B</strong> → Si todos los créditos están completos o reconocidos y solo falta el Trabajo de Grado.</li>
+      <li><strong>Escenario C</strong> → Si todo está completo excepto el requisito de lengua extranjera. Remite directamente al Centro de Lenguas.</li>
+    </ul>
+    <p style="margin-top:8px">Un aspirante puede transitar de A a B una vez que completa los créditos faltantes mediante los mecanismos del Escenario A.</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ 4. PIE ═══════════════════ -->
+<section class="program-section" id="pie">
+  <h2 class="section-title">Proyecto Integrador Especial (PIE) · Amnistía FISI</h2>
+
+  <div class="cycle-banner cb-pie">
+    <div class="icon">🎓</div>
+    <div>
+      <h4>Propuesta de Creación de Curso en Catálogo Académico</h4>
+      <p>La FISI propone la creación del curso <strong>"Proyecto Integrador Especial — Amnistía 90 Años FISI"</strong> en el catálogo académico. Es una de las cinco modalidades disponibles para el Escenario B (Solo Trabajo de Grado) y actúa como opción integradora y de actualización para quienes prefieran un producto tecnológico estructurado con tutoría continua.</p>
+      <p class="note">📌 La carta descriptiva de este curso debe ser elaborada por el Comité de Currículo y entregada a la Dirección de Currículo antes del <strong>17 de abril de 2026</strong>.</p>
+    </div>
+  </div>
+
+  <table class="pie-table">
+    <tbody>
+      <tr>
+        <th>Nombre del curso</th>
+        <td><strong>Proyecto Integrador Especial — Amnistía 90 Años FISI</strong></td>
+      </tr>
+      <tr>
+        <th>Créditos</th>
+        <td><strong>5 créditos académicos</strong></td>
+      </tr>
+      <tr>
+        <th>Modalidad</th>
+        <td>Mixta — presencial + trabajo autónomo supervisado</td>
+      </tr>
+      <tr>
+        <th>Intensidad</th>
+        <td><strong>240 horas</strong> de trabajo académico total</td>
+      </tr>
+      <tr>
+        <th>Objetivo</th>
+        <td>Desarrollar y sustentar un producto tecnológico que integre competencias del ciclo profesional de Ingeniería de Sistemas e Informática, demostrando el perfil de egreso del programa.</td>
+      </tr>
+      <tr>
+        <th>Metodología</th>
+        <td>Trabajo individual o en duplas, con <strong>tutoría quincenal</strong> del director asignado. Reuniones de seguimiento cada dos semanas durante el semestre de ejecución.</td>
+      </tr>
+      <tr>
+        <th>Evaluación</th>
+        <td><strong>75% · Entregable técnico escrito</strong> (producto + documentación + análisis)<br><strong>25% · Sustentación ante jurado</strong> designado por el Director del Programa</td>
+      </tr>
+      <tr>
+        <th>Requisito de inscripción</th>
+        <td>Tener al menos el <strong>90% de los créditos</strong> del programa completados, reconocidos o en proceso de homologación aprobada.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="dominio-grid" style="margin-top:16px">
+    <div class="dominio-card dc-purple">
+      <h4>🏆 Producto tecnológico esperado</h4>
+      <p>El aspirante puede proponer el tema del proyecto en función de su experiencia laboral o de un problema real del sector TI. Puede incluir: aplicaciones web/móvil, sistemas de información, soluciones de infraestructura cloud, herramientas de analítica de datos, sistemas de ciberseguridad, u otros afines al perfil de egreso FISI.</p>
+    </div>
+    <div class="dominio-card dc-teal">
+      <h4>📋 Proceso de activación del PIE</h4>
+      <ul>
+        <li>El aspirante expresa interés por el PIE al solicitar la amnistía.</li>
+        <li>El Director verifica el cumplimiento del 90% de créditos.</li>
+        <li>El Director del Programa asigna un tutor de la planta docente.</li>
+        <li>El aspirante presenta una propuesta de proyecto (máx. 2 páginas) para aval del Comité de Currículo.</li>
+        <li>Una vez aprobada la propuesta, el aspirante matricula el PIE en el período siguiente.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="warning-box info-box">
+    <h4>⚠️ Pendiente · Carta Descriptiva</h4>
+    <p>El Comité de Currículo debe elaborar la carta descriptiva formal del PIE siguiendo el formato institucional DA-FO-214N o el vigente. Esta carta debe ser entregada a la Dirección de Currículo <strong>antes del 17 de abril de 2026</strong>, simultáneamente con este documento de condiciones.</p>
+    <p><strong>Responsable:</strong> Comité de Currículo FISI · <strong>Fecha límite:</strong> 14 de abril de 2026 (para revisión interna previa al envío del 17)</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ 5. COSTOS ═══════════════════ -->
+<section class="program-section" id="costos">
+  <h2 class="section-title">Costos a Cargo del Aspirante</h2>
+
+  <div class="success-box info-box">
+    <h4>✅ Artículo 6-e del Acuerdo CDG N° 01/2026</h4>
+    <p>De conformidad con el Acuerdo, todos los costos del proceso son asumidos por el aspirante. La FISI no tiene capacidad de exonerar estos derechos. El aspirante podrá gestionar ante la <strong>Vicerrectoría Académica</strong> opciones de financiación disponibles en la institución.</p>
+  </div>
+
+  <div class="comp-grid">
+    <div class="comp-card cc-red">
+      <h4>💳 Derechos de Matrícula</h4>
+      <span class="cc-sub">Registro Universitario</span>
+      <p>Según las tarifas vigentes para el período en que se formalice la inscripción. Se liquida de acuerdo con el número de créditos matriculados en el plan de culminación.</p>
+    </div>
+    <div class="comp-card cc-gold">
+      <h4>📋 Derechos de Homologación</h4>
+      <span class="cc-sub">Por crédito reconocido externamente</span>
+      <p>Por cada crédito homologado de otra institución, según las tarifas de Registro Universitario vigentes. Aplica exclusivamente al mecanismo 3.1-b (cursos externos).</p>
+    </div>
+    <div class="comp-card cc-blue">
+      <h4>📝 Derechos de Suficiencia</h4>
+      <span class="cc-sub">Por evaluación académica</span>
+      <p>Para cursos que se validen mediante examen de suficiencia, según el reglamento institucional. El aspirante debe cancelar este derecho antes de la presentación del examen.</p>
+    </div>
+    <div class="comp-card cc-green">
+      <h4>🎓 Derechos de Grado</h4>
+      <span class="cc-sub">Al completar el proceso</span>
+      <p>Según el reglamento institucional vigente al momento de la graduación, incluyendo certificaciones, diploma y demás trámites asociados al acto de grado.</p>
+    </div>
+  </div>
+
+  <div class="sintesis-box sint-dark">
+    <h3>💡 Opciones de Financiación Institucional</h3>
+    <p>La FISI orientará a los aspirantes sobre los mecanismos de financiación disponibles en la UPB, incluyendo créditos educativos ICETEX, convenios con el sector TI para práctica remunerada, y otras opciones gestionadas por la Vicerrectoría Académica. La decisión sobre la viabilidad financiera es individual de cada aspirante y no modifica las condiciones académicas del proceso.</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ 6. PROCESO DE ADMISIÓN ═══════════════════ -->
+<section class="program-section" id="proceso">
+  <h2 class="section-title">Proceso de Admisión y Ruta del Aspirante</h2>
+
+  <div class="ciclo-timeline">
+    <div class="cphase ph-burg">
+      <div class="cphase-num">1</div>
+      <h4>Solicitud formal</h4>
+      <div class="cphase-sub">Formulario ESU<br>20 may – 20 nov 2026</div>
+    </div>
+    <div class="cphase-arr">→</div>
+    <div class="cphase ph-blue">
+      <div class="cphase-num">2</div>
+      <h4>Análisis de créditos</h4>
+      <div class="cphase-sub">Director del Programa<br>Clasifica Esc. A · B · C</div>
+    </div>
+    <div class="cphase-arr">→</div>
+    <div class="cphase ph-gold">
+      <div class="cphase-num">3</div>
+      <h4>Entrevista orientación</h4>
+      <div class="cphase-sub">Director + Aspirante<br>Opcional · Recomendada</div>
+    </div>
+    <div class="cphase-arr">→</div>
+    <div class="cphase ph-teal">
+      <div class="cphase-num">4</div>
+      <h4>Validación idioma</h4>
+      <div class="cphase-sub">Centro de Lenguas<br>Si aplica Esc. C</div>
+    </div>
+    <div class="cphase-arr">→</div>
+    <div class="cphase ph-green">
+      <div class="cphase-num">5</div>
+      <h4>Formalización</h4>
+      <div class="cphase-sub">Registro Universitario<br>Calendario académico</div>
+    </div>
+    <div class="cphase-arr">→</div>
+    <div class="cphase ph-purple">
+      <div class="cphase-num">6</div>
+      <h4>Ejecución del plan</h4>
+      <div class="cphase-sub">Créditos · TDG · PIE<br>Máx. 2 años</div>
+    </div>
+    <div class="cphase-arr">→</div>
+    <div class="cphase ph-slate">
+      <div class="cphase-num">7</div>
+      <h4>Proceso de grado</h4>
+      <div class="cphase-sub">Reglamento institucional<br>Graduaciones</div>
+    </div>
+  </div>
+
+  <div class="semesters-grid two-col" style="margin-top:16px">
+    <article class="semester-detail-card c-burg">
+      <div class="semester-header">
+        <h3 class="semester-title">Pasos 1–3 · Ingreso y Clasificación</h3>
+        <span class="credit-badge cb-red">Inicio</span>
+      </div>
+      <ul class="subjects-list">
+        <li class="subject-item si-burg">
+          <div class="subject-name">① Solicitud formal (20 may – 20 nov 2026)</div>
+          <div class="subject-description">El aspirante diligencia el formulario habilitado por Experiencia y Servicios Universitarios (ESU), indicando programa, período de retiro y situación académica general.</div>
+        </li>
+        <li class="subject-item si-blue">
+          <div class="subject-name">② Análisis de créditos pendientes</div>
+          <div class="subject-description">El Director del Programa revisa el historial académico y determina el escenario aplicable (A, B o C) con base en el plan de estudios vigente 2025–2030. Plazo: <strong>10 días hábiles</strong>.</div>
+        </li>
+        <li class="subject-item si-gold">
+          <div class="subject-name">③ Entrevista de orientación (opcional · recomendada)</div>
+          <div class="subject-description">Reunión entre el aspirante y el Director para definir el mecanismo de culminación más apropiado, la carga académica estimada y los costos proyectados.</div>
+        </li>
+      </ul>
+    </article>
+    <article class="semester-detail-card c-green">
+      <div class="semester-header">
+        <h3 class="semester-title">Pasos 4–7 · Formalización y Ejecución</h3>
+        <span class="credit-badge cb-green">Proceso</span>
+      </div>
+      <ul class="subjects-list">
+        <li class="subject-item si-teal">
+          <div class="subject-name">④ Validación de lengua extranjera</div>
+          <div class="subject-description">En coordinación con el Centro de Lenguas UPB. Si el aspirante ya acreditó el idioma previamente, este paso se omite. Si está en Escenario C, el proceso termina aquí y el Centro de Lenguas gestiona el resto.</div>
+        </li>
+        <li class="subject-item si-green">
+          <div class="subject-name">⑤ Formalización y matrícula</div>
+          <div class="subject-description">A través de Registro Universitario, según el calendario académico vigente. Requiere el aval previo del plan de acompañamiento por la Vicerrectoría Académica (Art. 8 del Acuerdo).</div>
+        </li>
+        <li class="subject-item si-purple">
+          <div class="subject-name">⑥ Ejecución del plan de culminación</div>
+          <div class="subject-description">El aspirante desarrolla los créditos pendientes, el Trabajo de Grado o el PIE en un plazo máximo de <strong>2 años</strong>. El Director hace seguimiento semestral.</div>
+        </li>
+        <li class="subject-item si-slate">
+          <div class="subject-name">⑦ Proceso de grado</div>
+          <div class="subject-description">Según el reglamento institucional de graduaciones de la UPB vigente al momento de cumplir todos los requisitos.</div>
+        </li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ 7. ASEGURAMIENTO ═══════════════════ -->
+<section class="program-section" id="calidad">
+  <h2 class="section-title">Factores de Calidad y Aseguramiento Académico</h2>
+
+  <div class="info-box">
+    <h4>🏛 FISI y el Aseguramiento de la Calidad Institucional</h4>
+    <p>La FISI, en coherencia con su proceso de acreditación (candidatura ABET EAC) y con el rol de Aseguramiento de la Calidad institucional, establece las siguientes salvaguardas académicas que aplican sin excepción a todos los beneficiarios de la amnistía.</p>
+  </div>
+
+  <div class="comp-grid">
+    <div class="comp-card cc-burg">
+      <h4>🎯 Demostración de Perfil de Egreso</h4>
+      <span class="cc-sub">Salvaguarda 1 — No negociable</span>
+      <p>Ningún aspirante podrá obtener el título sin haber demostrado las competencias del <strong>perfil de egreso del Ingeniero de Sistemas e Informática</strong>, ya sea mediante cursos aprobados, reconocimientos formales o el proceso de evaluación de competencias.</p>
+    </div>
+    <div class="comp-card cc-gold">
+      <h4>🔄 Actualización Tecnológica</h4>
+      <span class="cc-sub">Salvaguarda 2 — Principio rector</span>
+      <p>El campo TI evoluciona rápidamente. El Comité de Currículo verificará que los créditos reconocidos (por experiencia laboral o certificaciones) correspondan a <strong>competencias vigentes y pertinentes</strong>, no a tecnologías obsoletas.</p>
+    </div>
+    <div class="comp-card cc-blue">
+      <h4>📊 Evaluación Equiparable</h4>
+      <span class="cc-sub">Salvaguarda 3 — Mismo estándar</span>
+      <p>Los trabajos de grado realizados en el marco de la amnistía serán sometidos al <strong>mismo proceso de evaluación</strong> que los trabajos regulares: rúbrica institucional y jurado académico designado. No habrá estándares diferenciados por el carácter de amnistía.</p>
+    </div>
+  </div>
+
+  <div class="cycle-banner cb-d">
+    <div class="icon">📋</div>
+    <div>
+      <h4>Salvaguarda 4 — Seguimiento y Reporte Institucional</h4>
+      <p>La FISI registrará y hará seguimiento a todos los casos admitidos por amnistía, para reportar al <strong>Comité de Apoyo y Evaluación de Casos Académicos Especiales</strong> coordinado por Desarrollo Estudiantil. Los reportes semestrales permitirán identificar riesgos de deserción durante el proceso de culminación y activar acompañamiento preventivo a través del sistema SAFI.</p>
+    </div>
+  </div>
+
+  <div class="sintesis-box sint-burg">
+    <h3>🔗 Articulación con ABET EAC y Registro Calificado</h3>
+    <p>La documentación generada por este proceso (solicitudes, planes de culminación, actas de aprobación, registros de seguimiento y graduaciones efectivas) constituirá evidencia directamente utilizable en los documentos de autoevaluación para la candidatura ABET EAC y la renovación del Registro Calificado ante el MEN. Se recomienda que el Director del Programa mantenga un expediente por beneficiario desde el momento de la solicitud.</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ 8. CRONOGRAMA ═══════════════════ -->
+<section class="program-section" id="cronograma">
+  <h2 class="section-title">Cronograma Interno FISI</h2>
+
+  <div class="warning-box info-box">
+    <h4>⏰ Fechas críticas — Esta semana</h4>
+    <p>Las primeras tres actividades vencen esta semana. El <strong>14 de abril</strong> es el límite para el Comité de Currículo, el <strong>15–16 de abril</strong> para el Consejo de Escuela, y el <strong>17 de abril</strong> para el envío formal a la Dirección de Currículo.</p>
+  </div>
+
+  <table class="crono-table">
+    <thead>
+      <tr>
+        <th>Actividad</th>
+        <th>Responsable</th>
+        <th>Fecha límite</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="crono-urg">
+        <td>Aprobación de esta propuesta en Comité de Currículo</td>
+        <td>Director de Facultad / Comité de Currículo</td>
+        <td>14 de abril de 2026</td>
+      </tr>
+      <tr class="crono-urg">
+        <td>Elaboración carta descriptiva del PIE (formato DA-FO-214N o vigente)</td>
+        <td>Comité de Currículo</td>
+        <td>14 de abril de 2026</td>
+      </tr>
+      <tr class="crono-urg">
+        <td>Aprobación en Consejo de Escuela</td>
+        <td>Decana de Escuela de Ingeniería</td>
+        <td>15–16 de abril de 2026</td>
+      </tr>
+      <tr class="crono-urg">
+        <td>Envío formal a Vicerrectoría Académica (direccioncurriculo.bga@upb.edu.co)</td>
+        <td>Decana de Escuela de Ingeniería</td>
+        <td>17 de abril de 2026</td>
+      </tr>
+      <tr>
+        <td>Actualización del listado de no graduados FISI con Registro Universitario</td>
+        <td>Director del Programa + Registro Universitario</td>
+        <td>18–23 de abril de 2026</td>
+      </tr>
+      <tr>
+        <td>Articulación con campaña de divulgación institucional</td>
+        <td>Director + Comunicaciones + Egresados FISI</td>
+        <td>24 de abril de 2026</td>
+      </tr>
+      <tr class="crono-ok">
+        <td>Inicio de recepción de solicitudes de aspirantes</td>
+        <td>Director del Programa / ESU</td>
+        <td>20 de mayo de 2026</td>
+      </tr>
+      <tr class="crono-ok">
+        <td>Cierre de recepción de solicitudes</td>
+        <td>Director del Programa</td>
+        <td>20 de noviembre de 2026</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="cutline cl-burg">
+    <h4>📅 Resumen — Esta semana es decisiva</h4>
+    <p>Lunes 14 abr: Comité de Currículo · Martes/Miércoles 15–16 abr: Consejo de Escuela · Jueves 17 abr: Envío a direccioncurriculo.bga@upb.edu.co</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ 9. APROBACIÓN ═══════════════════ -->
+<section class="program-section" id="aprobacion">
+  <h2 class="section-title">Aprobación del Documento</h2>
+
+  <div class="legal-box">
+    <h3>📄 Constancia de Elaboración y Aprobación</h3>
+    <p>El presente documento <strong>"Propuesta de Implementación — Amnistía 90 Años, Facultad de Ingeniería de Sistemas e Informática"</strong> fue elaborado por el <strong>Comité de Currículo de la Facultad de Ingeniería de Sistemas e Informática</strong> de la Universidad Pontificia Bolivariana, Seccional Bucaramanga, en cumplimiento de lo establecido en el <strong>Artículo 4 del Acuerdo CDG N° 01 de 2026</strong>.</p>
+    <p>Será presentado al <strong>Consejo de Escuela de Ingeniería</strong> para su aprobación formal antes del envío a la Vicerrectoría Académica.</p>
+    <p><strong>Versión:</strong> Borrador — Sujeto a revisión y aprobación del Consejo de Escuela · Elaborado en cumplimiento del cronograma del Acuerdo CDG N° 01/2026.</p>
+    <div class="law-tags">
+      <span class="law-tag">Acuerdo CDG N° 01/2026 · Art. 4</span>
+      <span class="law-tag">SNIES 102907</span>
+      <span class="law-tag">Plan FISI 2025–2030 · 133 cr</span>
+      <span class="law-tag">Registro Calificado MEN Vigente</span>
+    </div>
+  </div>
+
+  <div class="firma-grid">
+    <div class="firma-block">
+      <div class="firma-line"></div>
+      <div class="firma-name">________________________________</div>
+      <div class="firma-role">Director de Facultad FISI<br>Ingeniería de Sistemas e Informática<br>UPB Seccional Bucaramanga</div>
+      <div class="firma-date">Bucaramanga, abril de 2026</div>
+      <div class="firma-acta">Acta Comité de Currículo / Consejo de Facultad<br>N° _________ / 2026</div>
+    </div>
+    <div class="firma-block">
+      <div class="firma-line"></div>
+      <div class="firma-name">Jacqueline Santamaria Valbuena</div>
+      <div class="firma-role">Decana de Escuela de Ingeniería<br>(para Consejo de Escuela)<br>UPB Seccional Bucaramanga</div>
+      <div class="firma-date">Bucaramanga, abril de 2026</div>
+      <div class="firma-acta">Acta Consejo de Escuela<br>N° _________ / 2026</div>
+    </div>
+  </div>
+
+  <div class="cutline cl-burg">
+    <h4>🏛 Universidad Pontificia Bolivariana · Seccional Bucaramanga · Escuela de Ingeniería</h4>
+    <p>Ingeniería de Sistemas e Informática · Comité de Currículo FISI · Borrador Abril 2026 · Acuerdo CDG N° 01/2026</p>
+  </div>
+</section>
+
+</div><!-- /container -->
+
+<script>
+const btns = document.querySelectorAll('.nav-button');
+const secs = document.querySelectorAll('.program-section');
+btns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const id = btn.dataset.section;
+    btns.forEach(b => b.classList.remove('active'));
+    secs.forEach(s => s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(id).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
